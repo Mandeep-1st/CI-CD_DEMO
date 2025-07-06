@@ -27,4 +27,4 @@ jobs:
           tags: mandeep1st/mynextapp:latest
 
       - name: Verify Pushed Image
-        ru: docker pull mandeep1st/mynextapp:latest
+        run: docker pull mandeep1st/mynextapp:latest
