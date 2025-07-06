@@ -1,0 +1,21 @@
+FROM node:20.12.0-alpine3.19
+
+WORKDIR /usr/src/app
+
+COPY package.json package-lock.json turbo.json tsconfig.json ./
+
+COPY apps ./apps
+
+COPY packages ./packages
+
+# Install dependecies
+RUN npm install
+
+#prisma
+RUN db:generate
+
+# Can you filter the build down to just one app?
+RUN npm run build
+
+# Make sure you have "start-user-app" in root package.json
+CMD [ "npm","run","start-user-app" ]
